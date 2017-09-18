@@ -1,0 +1,17 @@
+{
+    "name": "bill.pt/woocommmerce-plugin",
+    "description": "WordPress Plugin that allow you to use bill.pt API to create invoices.",
+    "keywords": ["wordpress", "plugin", "invoices", "faturas", "faturar", "facturas", "emitir faturas", "bill-faturacao", "api"],
+    "homepage": "https://bill.pt",
+    "license": "MIT",
+    "authors": [{
+        "name": "Carlos Branco",
+        "email": "carlos@epicbit.pt",
+        "homepage": "https://bill.pt"
+    }],
+    "type": "wordpress-plugin",
+    "require": {
+        "php": ">=5.3.2",
+        "composer/installers": "v1.0.6"
+    }
+}

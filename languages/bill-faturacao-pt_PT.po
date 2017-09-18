@@ -1,0 +1,621 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Bill Faturação Woo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-09-17 11:58-0700\n"
+"PO-Revision-Date: 2017-09-18 02:00+0700\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.3\n"
+"Last-Translator: Carlos Branco <carlosbranco88@gmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: pt_PT\n"
+
+#: bill-faturacao.php:77
+msgid "Ver / Gerar Documento"
+msgstr "Ver / Gerar Documento"
+
+#: bill-faturacao.php:80
+msgid "A encomenda tem que ser dada como paga para poder ser gerada."
+msgstr "A encomenda tem que ser dada como paga para poder ser gerada."
+
+#: bill-faturacao.php:103
+msgid ""
+"Não foi possivel fazer o pedido. Possivel os seus dados da api estão errados."
+msgstr ""
+"Não foi possivel fazer o pedido. Possivel os seus dados da api estão errados."
+
+#: bill-faturacao.php:108
+msgid "Deve introduzir o código do produto."
+msgstr "Deve introduzir o código do produto."
+
+#: bill-faturacao.php:133 bill.php:259
+msgid "Deverá configurar o seu token fazendo login com os seus dados."
+msgstr "Deverá configurar o seu token fazendo login com os seus dados."
+
+#: bill.php:185 display_settings.php:248
+msgid "Falta"
+msgstr "Falta"
+
+#: bill.php:574 bill.php:656 display_settings.php:544 display_settings.php:559
+msgid "Orçamento"
+msgstr "Orçamento"
+
+#: bill.php:580 bill.php:661 display_settings.php:545 display_settings.php:560
+msgid "Encomenda"
+msgstr "Encomenda"
+
+#: bill.php:586
+msgid "Guia & Fatura"
+msgstr "Guia & Fatura"
+
+#: bill.php:592 display_settings.php:547 display_settings.php:562
+msgid "Fatura"
+msgstr "Fatura"
+
+#: bill.php:598 display_settings.php:549 display_settings.php:564
+msgid "Fatura Simplificada"
+msgstr "Fatura Simplificada"
+
+#: bill.php:604 display_settings.php:548 display_settings.php:563
+msgid "Fatura Recibo"
+msgstr "Fatura Recibo"
+
+#: bill.php:610 bill.php:686 display_settings.php:550 display_settings.php:565
+msgid "Recibo"
+msgstr "Recibo"
+
+#: bill.php:626
+msgid "Não emitido"
+msgstr "Não emitido"
+
+#: bill.php:651
+msgid "Tipo Documento"
+msgstr "Tipo Documento"
+
+#: bill.php:657
+msgid ""
+"Um Orçamento é um documento que informa o cliente da melhor cotação possível "
+"para os respectivos serviços e produtos pretendidos e servirá como documento "
+"formal para assinatura de contrato ou emissão de Factura."
+msgstr ""
+"Um Orçamento é um documento que informa o cliente da melhor cotação possível "
+"para os respectivos serviços e produtos pretendidos e servirá como documento "
+"formal para assinatura de contrato ou emissão de Factura."
+
+#: bill.php:662
+msgid ""
+"As Notas de Encomenda (também conhecidas como purchase orders, ordens de "
+"compra ou pedidos de compra) são um documento que pode emitir, enviar ao seu "
+"cliente e que formalizam a vontade de adquirir artigos ou serviços "
+"específicos."
+msgstr ""
+"As Notas de Encomenda (também conhecidas como purchase orders, ordens de "
+"compra ou pedidos de compra) são um documento que pode emitir, enviar ao seu "
+"cliente e que formalizam a vontade de adquirir artigos ou serviços "
+"específicos."
+
+#: bill.php:666
+msgid "Guia de Transporte e Fatura"
+msgstr "Guia de Transporte e Fatura"
+
+#: bill.php:667
+msgid ""
+"A guia de transporte tem um efeito logístico e é o documento legal emitido "
+"para acompanhar bens, em território nacional. Será também emitida uma Fatura "
+"sendo que está estara directamente relacionada com a guia."
+msgstr ""
+"A guia de transporte tem um efeito logístico e é o documento legal emitido "
+"para acompanhar bens, em território nacional. Será também emitida uma Fatura "
+"sendo que está estara directamente relacionada com a guia."
+
+#: bill.php:671
+msgid "Factura"
+msgstr "Factura"
+
+#: bill.php:672
+msgid ""
+"A factura é um documento de valor contabilístico que atesta uma transacção "
+"comercial entre duas pessoas ou empresas. Deve conter informação sobre o "
+"produto ou serviço prestado, bem como a quantidade e o valor desta transação."
+msgstr ""
+"A factura é um documento de valor contabilístico que atesta uma transacção "
+"comercial entre duas pessoas ou empresas. Deve conter informação sobre o "
+"produto ou serviço prestado, bem como a quantidade e o valor desta transação."
+
+#: bill.php:676
+msgid "Factura Recibo"
+msgstr "Factura Recibo"
+
+#: bill.php:677
+msgid ""
+"A factura recibo é um documento que serve de fatura e comprovativo de "
+"pagamento. Tenha em atenção que nunca deverá emitir uma Fatura Recibo de uma "
+"encomenda que não se encontra paga. Pois a factura recibo funciona como "
+"comprovativo de pagamento."
+msgstr ""
+"A factura recibo é um documento que serve de fatura e comprovativo de "
+"pagamento. Tenha em atenção que nunca deverá emitir uma Fatura Recibo de uma "
+"encomenda que não se encontra paga. Pois a factura recibo funciona como "
+"comprovativo de pagamento."
+
+#: bill.php:681
+msgid "Factura Simplificada"
+msgstr "Factura Simplificada"
+
+#: bill.php:682
+msgid ""
+"As faturas simplificadas diferem de uma fatura normal por se tratarem de um "
+"documento de venda auto-pago, ou seja, assim que o documento é emitido, este "
+"fica automaticamente liquidado."
+msgstr ""
+"As faturas simplificadas diferem de uma fatura normal por se tratarem de um "
+"documento de venda auto-pago, ou seja, assim que o documento é emitido, este "
+"fica automaticamente liquidado."
+
+#: bill.php:687
+msgid "O recibo é um comprovativo de pagamento."
+msgstr "O recibo é um comprovativo de pagamento."
+
+#: bill.php:702
+msgid "Data"
+msgstr "Data"
+
+#: bill.php:712
+msgid "Prazo Vencimento"
+msgstr "Prazo Vencimento"
+
+#: bill.php:726 display_settings.php:419
+msgid "Loja"
+msgstr "Loja"
+
+#: bill.php:742 display_settings.php:407
+msgid "Série Documento"
+msgstr "Série Documento"
+
+#: bill.php:755 display_settings.php:327 display_settings.php:473
+msgid "Método Pagamento"
+msgstr "Método Pagamento"
+
+#: bill.php:769 display_settings.php:488
+msgid "Método Expedicao"
+msgstr "Método Expedicao"
+
+#: bill.php:782 display_settings.php:501
+msgid "Envio por e-mail"
+msgstr "Envio por e-mail"
+
+#: bill.php:785 display_settings.php:504
+msgid "Automático para e-mail do cliente"
+msgstr "Automático para e-mail do cliente"
+
+#: bill.php:805
+msgid "Nome Empresa / Cliente"
+msgstr "Nome Empresa / Cliente"
+
+#: bill.php:815
+msgid "NIF"
+msgstr "NIF"
+
+#: bill.php:828
+msgid "E-mail"
+msgstr "E-mail"
+
+#: bill.php:838
+msgid "Código no Bill (se já existir)"
+msgstr "Código no Bill (se já existir)"
+
+#: bill.php:849 bill.php:918 bill.php:999
+msgid "Morada"
+msgstr "Morada"
+
+#: bill.php:860 bill.php:929 bill.php:1010
+msgid "Pais"
+msgstr "Pais"
+
+#: bill.php:876 bill.php:945 bill.php:1026
+msgid "Código Postal"
+msgstr "Código Postal"
+
+#: bill.php:887 bill.php:956 bill.php:1037
+msgid "Cidade"
+msgstr "Cidade"
+
+#: bill.php:908 bill.php:990
+msgid "Utilizar"
+msgstr "Utilizar"
+
+#: bill.php:913
+msgid "Morada Entrega"
+msgstr "Morada Entrega"
+
+#: bill.php:914
+msgid "Dados da entrega"
+msgstr "Dados da entrega"
+
+#: bill.php:970
+msgid "Data de Descarga"
+msgstr "Data de Descarga"
+
+#: bill.php:995
+msgid "Morada Armazem"
+msgstr "Morada Armazem"
+
+#: bill.php:996
+msgid "Dados de onde é enviado."
+msgstr "Dados de onde é enviado."
+
+#: bill.php:1051
+msgid "Data de Carga"
+msgstr "Data de Carga"
+
+#: bill.php:1071
+msgid "Linhas do documento"
+msgstr "Linhas do documento"
+
+#: bill.php:1072
+msgid ""
+"Aqui são mostrados os itens e portes etc. O campo código equivale ao campo "
+"SKU do Woocommerce. Se quiser fazer referência entre os seus produtos no "
+"woocommerce e no bill.pt use o campo Sku. Se não utilizar será "
+"automáticamente criado um novo produto e actualizado o sku no Woocommerce. "
+"Lembre-se que o código deverá ser único."
+msgstr ""
+"Aqui são mostrados os itens e portes etc. O campo código equivale ao campo "
+"SKU do Woocommerce. Se quiser fazer referência entre os seus produtos no "
+"woocommerce e no bill.pt use o campo Sku. Se não utilizar será "
+"automáticamente criado um novo produto e actualizado o sku no Woocommerce. "
+"Lembre-se que o código deverá ser único."
+
+#: bill.php:1076 bill.php:1088
+msgid "Bill.pt Item ID"
+msgstr "Bill.pt Item ID"
+
+#: bill.php:1077 bill.php:1089
+msgid "Código"
+msgstr "Código"
+
+#: bill.php:1078 bill.php:1090
+msgid "Descricão"
+msgstr "Descricão"
+
+#: bill.php:1079 bill.php:1091 bill.php:2024
+msgid "Qtd"
+msgstr "Qtd"
+
+#: bill.php:1080 bill.php:1092
+msgid "P. Unit"
+msgstr "P. Unit"
+
+#: bill.php:1109
+msgid "Novo"
+msgstr "Novo"
+
+#: bill.php:1138 bill.php:1193
+msgid "Procurar"
+msgstr "Procurar"
+
+#: bill.php:1221
+msgid "Totais"
+msgstr "Totais"
+
+#: bill.php:1222
+msgid "Totais do Documento"
+msgstr "Totais do Documento"
+
+#: bill.php:1227
+msgid "Valor"
+msgstr "Valor"
+
+#: bill.php:1252
+msgid "Moeda alternativa"
+msgstr "Moeda alternativa"
+
+#: bill.php:1252
+msgid "Atenção"
+msgstr "Atenção"
+
+#: bill.php:1252
+msgid "Todos os documentos são emitidos"
+msgstr "Todos os documentos são emitidos"
+
+#: bill.php:1252
+msgid "em Euros"
+msgstr "em Euros"
+
+#: bill.php:1252
+msgid ""
+"Pelo que a moeda do seu Woocommerce por defeito deverá ser euros. No entanto "
+"poderá mostrar o total no fim do documento numa moeda alternativa."
+msgstr ""
+"Pelo que a moeda do seu Woocommerce por defeito deverá ser euros. No entanto "
+"poderá mostrar o total no fim do documento numa moeda alternativa."
+
+#: bill.php:1260
+msgid "Moeda"
+msgstr "Moeda"
+
+#: bill.php:1276
+msgid "Cambio"
+msgstr "Cambio"
+
+#: bill.php:1330
+msgid "Finalizar"
+msgstr "Finalizar"
+
+#: bill.php:1332
+msgid "Criar Rascunho"
+msgstr "Criar Rascunho"
+
+#: bill.php:1402
+msgid "Data em formato invalido"
+msgstr "Data em formato invalido"
+
+#: bill.php:1415
+msgid "Prazo Vencimento formato invalido"
+msgstr "Prazo Vencimento formato invalido"
+
+#: bill.php:1428
+msgid "Data Carga em formato invalido"
+msgstr "Data Carga em formato invalido"
+
+#: bill.php:1441
+msgid "Data Descarga em formato invalido"
+msgstr "Data Descarga em formato invalido"
+
+#: bill.php:1459
+msgid "Codigo Postal Invalido, se não tiver a informação deixe em branco."
+msgstr "Codigo Postal Invalido, se não tiver a informação deixe em branco."
+
+#: bill.php:1467
+msgid ""
+"Codigo Postal do armazem invalido (é apenas obrigado a colocar os dados do "
+"armazem em documentos de transporte) :"
+msgstr ""
+"Codigo Postal do armazem invalido (é apenas obrigado a colocar os dados do "
+"armazem em documentos de transporte) :"
+
+#: bill.php:1475
+msgid ""
+"Codigo Postal do destino invalido (é apenas obrigado a colocar os dados do "
+"destino em documentos de transporte) :"
+msgstr ""
+"Codigo Postal do destino invalido (é apenas obrigado a colocar os dados do "
+"destino em documentos de transporte) :"
+
+#: bill.php:1564
+msgid "E-mail enviado com sucesso para o seguinte endereço: "
+msgstr "E-mail enviado com sucesso para o seguinte endereço: "
+
+#: bill.php:1601
+msgid ""
+"O nif que colocou é invalido. Se não tem o NIF do cliente deixe o campo "
+"vazio."
+msgstr ""
+"O nif que colocou é invalido. Se não tem o NIF do cliente deixe o campo "
+"vazio."
+
+#: bill.php:2023
+msgid "Produto"
+msgstr "Produto"
+
+#: bill.php:2025
+msgid "Preco"
+msgstr "Preco"
+
+#: bill.php:2026 bill.php:2048 display_settings.php:338
+msgid "Imposto"
+msgstr "Imposto"
+
+#: bill.php:2027 bill.php:2056 display_settings.php:543
+#: display_settings.php:558
+msgid "Total"
+msgstr "Total"
+
+#: bill.php:2044
+msgid "Sub-total"
+msgstr "Sub-total"
+
+#: bill.php:2052
+msgid "Descontos"
+msgstr "Descontos"
+
+#: bill.php:2066
+msgid "Ver No Bill"
+msgstr "Ver No Bill"
+
+#: bill.php:2069
+msgid "Enviar Por E-mail"
+msgstr "Enviar Por E-mail"
+
+#: bill.php:2072
+msgid "Gerar Recibo"
+msgstr "Gerar Recibo"
+
+#: bill.php:2105
+msgid "E-mail enviado com sucesso para o seguinte endereço:"
+msgstr "E-mail enviado com sucesso para o seguinte endereço:"
+
+#: bill.php:2118
+msgid "Utilizador não encontrado no Woocommerce!"
+msgstr "Utilizador não encontrado no Woocommerce!"
+
+#: config.php:66
+msgid "Informação Fiscal"
+msgstr "Informação Fiscal"
+
+#: config.php:71
+msgid "NIF/VAT"
+msgstr "NIF/VAT"
+
+#: config.php:72
+msgid "Número de informação Fiscal que será colocado na Fatura. (VAT)"
+msgstr "Número de informação Fiscal que será colocado na Fatura. (VAT)"
+
+#: config.php:97
+msgid "Número de Contribuinte"
+msgstr "Número de Contribuinte"
+
+#: display_settings.php:205
+msgid "Configurações"
+msgstr "Configurações"
+
+#: display_settings.php:206
+msgid "Encomendas"
+msgstr "Encomendas"
+
+#: display_settings.php:207
+msgid "Ver Documento"
+msgstr "Ver Documento"
+
+#: display_settings.php:216
+msgid "Configurar Token"
+msgstr "Configurar Token"
+
+#: display_settings.php:217
+msgid ""
+"Deverá logar com os seus dados para obter o token. Deverá ligar a API para o "
+"seu utilizador nas permissões do Bill.pt"
+msgstr ""
+"Deverá logar com os seus dados para obter o token. Deverá ligar a API para o "
+"seu utilizador nas permissões do Bill.pt"
+
+#: display_settings.php:221 display_settings.php:229
+msgid "Email"
+msgstr "Email"
+
+#: display_settings.php:222 display_settings.php:230
+msgid "Password"
+msgstr "Password"
+
+#: display_settings.php:223 display_settings.php:231
+msgid "Action"
+msgstr "Action"
+
+#: display_settings.php:224 display_settings.php:232
+msgid "State"
+msgstr "State"
+
+#: display_settings.php:245
+msgid " Get Token "
+msgstr " Get Token "
+
+#: display_settings.php:256
+msgid "Base de dados"
+msgstr "Base de dados"
+
+#: display_settings.php:257
+msgid ""
+"Tenha a certeza que actualizou todos os dados antes de começar a Faturar."
+msgstr ""
+"Tenha a certeza que actualizou todos os dados antes de começar a Faturar."
+
+#: display_settings.php:261 display_settings.php:268
+msgid "Dados"
+msgstr "Dados"
+
+#: display_settings.php:262 display_settings.php:269
+msgid "Estado"
+msgstr "Estado"
+
+#: display_settings.php:263 display_settings.php:270 display_settings.php:280
+#: display_settings.php:289 display_settings.php:300 display_settings.php:311
+#: display_settings.php:322 display_settings.php:333 display_settings.php:344
+#: display_settings.php:355
+msgid "Update"
+msgstr "Update"
+
+#: display_settings.php:275
+msgid "Lojas"
+msgstr "Lojas"
+
+#: display_settings.php:284
+msgid "Séries"
+msgstr "Séries"
+
+#: display_settings.php:294
+msgid "Tipos Documento"
+msgstr "Tipos Documento"
+
+#: display_settings.php:305
+msgid "Unidades de Medida"
+msgstr "Unidades de Medida"
+
+#: display_settings.php:316
+msgid "Método de Expedição"
+msgstr "Método de Expedição"
+
+#: display_settings.php:349
+msgid "Isenção"
+msgstr "Isenção"
+
+#: display_settings.php:366
+msgid "Valores por defeito"
+msgstr "Valores por defeito"
+
+#: display_settings.php:367
+msgid ""
+"Poderá configurar alguns valores por defeito para tornar a emissão dos "
+"documentos mais simples."
+msgstr ""
+"Poderá configurar alguns valores por defeito para tornar a emissão dos "
+"documentos mais simples."
+
+#: display_settings.php:368
+msgid "Código Portes Envio:"
+msgstr "Código Portes Envio:"
+
+#: display_settings.php:368
+msgid ""
+"Este deverá ser o código do Bill do Serviço de envio. Se não colocar nenhum "
+"será criado um novo automáticamente na primeira fatura."
+msgstr ""
+"Este deverá ser o código do Bill do Serviço de envio. Se não colocar nenhum "
+"será criado um novo automáticamente na primeira fatura."
+
+#: display_settings.php:376
+msgid "Bill API MODO"
+msgstr "Bill API MODO"
+
+#: display_settings.php:391
+msgid "Debug (apenas para programadores)"
+msgstr "Debug (apenas para programadores)"
+
+#: display_settings.php:434
+msgid "Código Portes de Envio"
+msgstr "Código Portes de Envio"
+
+#: display_settings.php:446
+msgid "Motivo Isenção"
+msgstr "Motivo Isenção"
+
+#: display_settings.php:460
+msgid "Unidade Medida"
+msgstr "Unidade Medida"
+
+#: display_settings.php:522
+msgid " Update "
+msgstr " Update "
+
+#: display_settings.php:541 display_settings.php:556
+msgid "Order"
+msgstr "Order"
+
+#: display_settings.php:542 display_settings.php:557
+msgid "Nome"
+msgstr "Nome"
+
+#: display_settings.php:546 display_settings.php:561
+msgid "Guia Transporte & Fatura"
+msgstr "Guia Transporte & Fatura"
+
+#: display_settings.php:551 display_settings.php:566
+msgid "Date"
+msgstr "Date"
