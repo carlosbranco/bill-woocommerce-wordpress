@@ -383,7 +383,7 @@ public function success(){
 
 public function getHttpCode()
 {
-	echo $this->http_code;
+	return $this->http_code;
 }
 
 public function setLog($log, $type = "file")
