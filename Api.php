@@ -325,8 +325,16 @@ public function postCheckToken()
 public function getModeUrl($url)
 {
 	$domain = "https://app.bill.pt/";
-	if( $this->mode != "standard" ){
+	if( $this->mode == "standard" ||  $this->mode == "portugal" ){
+		$domain = "https://app.bill.pt/";
+	}
+
+	if( $this->mode == "dev" ){
 		$domain = "https://dev.bill.pt/";
+	}
+
+	if( $this->mode == "world" ){
+		$domain = "https://int.bill.pt/";
 	}
 	return $domain . $this->prefix . $url;
 }

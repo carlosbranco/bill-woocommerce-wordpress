@@ -7,6 +7,7 @@ class Bill
     protected $error;
     protected $basic_data = null;
     protected $default_config = null;
+    protected $url;
 
     public function __construct($mode) {
       $default = $this->getDefaultConfig();
@@ -14,12 +15,32 @@ class Bill
       $valid = ['standard', 'dev', 'world','portugal'];
       if(isset($default->api_mode) && in_array($default->api_mode, $valid)){
         $mode = $default->api_mode;
+
+        switch($mode){
+          case 'standard':
+          case 'portugal':
+          $this->url = "https://app.bill.pt";
+          break;
+          case 'world':
+          $this->url = "https://int.bill.pt";
+          break;
+          case 'dev':
+          $this->url = "https://dev.bill.pt";
+          break;
+          default:
+          $this->url = "https://app.bill.pt";
+          break;
+        }
       }
 
       $this->api = new API($mode);
       if($this->isDebugOn()){
         $this->api->setLog(true, 'memory');
       } 
+    }
+
+    public function getUrl(){
+      return $this->url;
     }
 
     public function isDebugOn(){
@@ -2059,7 +2080,7 @@ public function printOptions($data, $meta, $order_id, $doc)
 {
   $document_level = $this->getDocumentLevel($meta);
   echo '<footer>';
-  echo '<a href="https://dev.bill.pt/documentos/editar/' . $doc . 's/' . $data->id . '">' . __("Ver No Bill","bill-faturacao") . '</a>';
+  echo '<a href="' . $this->getUrl() . '/documentos/editar/' . $doc . 's/' . $data->id . '">' . __("Ver No Bill","bill-faturacao") . '</a>';
 
   if($data->terminado == 1 && (!isset($meta['_email_enviado_' . $data->id]) || $meta['_email_enviado_' . $data->id] != "sim") && isset($meta["_billing_email"]) && filter_var($meta["_billing_email"], FILTER_VALIDATE_EMAIL)){
     echo '<a href="admin.php?page=bill_settings&tab=encomendas&order_id=' . $order_id . '&envio_email=' . $data->id . '&m=' . $meta["_billing_email"] . '">' . __("Enviar Por E-mail","bill-faturacao") . '</a>';

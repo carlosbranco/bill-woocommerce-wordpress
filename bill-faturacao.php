@@ -6,9 +6,15 @@ Description:  WordPress Plugin that allow you to use bill.pt API to create invoi
 Version: 0.5.12
 Author: EpicBit
 Author URI: https://epicbit.pt
-License: GPLv2
 Domain Path: /languages
 Text Domain: bill-faturacao
+License: GPL2
+ 
+Bill.pt Invoices Woo is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or any later version.
+ 
+Bill.pt Invoices Woo is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+ 
+You should have received a copy of the GNU General Public License along with Bill.pt Invoices Woo. If not, see {License URI}.
 */
 
 // Exit if accessed directly
