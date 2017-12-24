@@ -1,4 +1,4 @@
-# bill-woocommerce-wordpress
+# bill-pt-woo-wordpress
 
 Inglês
 Wordpress plugin that allow you to create invoices using bill.pt api. 

@@ -5,7 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define('BILL_API_MODE', 'standard');
 
-function woocommerce_in_the_house()
+function bill_pt_woocommerce_in_the_house()
 {
     $plugins = get_option( 'active_plugins' );
     foreach($plugins as $plugin){
@@ -16,7 +16,7 @@ function woocommerce_in_the_house()
     return false;
 }
 
-function pagination($pages = '', $range = 4)
+function bill_pt_pagination($pages = '', $range = 4)
 {  
      $showitems = ($range * 2)+1;  
 
@@ -54,16 +54,24 @@ function pagination($pages = '', $range = 4)
      }
 }
 
+function bill_pt_load_custom_wp_admin_style($hook) {
+        if($hook != 'toplevel_page_bill_settings') {
+                return;
+        }
+        wp_enqueue_style( 'custom_bill_css',  plugin_dir_url( __FILE__ ) . '/assets/style.css' );
+}
+add_action( 'admin_enqueue_scripts', 'bill_pt_load_custom_wp_admin_style' );
 
-if (woocommerce_in_the_house()){
+
+if (bill_pt_woocommerce_in_the_house()){
     /**
     * Add the field to the checkout
     */
-    add_action( 'woocommerce_after_order_notes', 'my_custom_checkout_field' );
+    add_action( 'woocommerce_after_order_notes', 'bill_pt_my_custom_checkout_field' );
     
-    function my_custom_checkout_field( $checkout ) {
+    function bill_pt_my_custom_checkout_field( $checkout ) {
         
-        echo '<div id="my_custom_checkout_field"><h2>' . __('Informação Fiscal',"bill-faturacao") . '</h2>';
+        echo '<div id="bill_pt_my_custom_checkout_field"><h2>' . __('Informação Fiscal',"bill-faturacao") . '</h2>';
         
         woocommerce_form_field( 'vat_number', array(
         'type'          => 'text',
@@ -80,20 +88,20 @@ if (woocommerce_in_the_house()){
     /**
     * Update the order meta with field value
     */
-    add_action( 'woocommerce_checkout_update_order_meta', 'my_custom_checkout_field_update_order_meta' );
+    add_action( 'woocommerce_checkout_update_order_meta', 'bill_pt_my_custom_checkout_field_update_order_meta' );
     
-    function my_custom_checkout_field_update_order_meta( $order_id ) {
+    function bill_pt_my_custom_checkout_field_update_order_meta( $order_id ) {
         if ( ! empty( $_POST['vat_number'] ) ) {
-            update_post_meta( $order_id, 'My VAT Number section', sanitize_text_field( $_POST['vat_number'] ) );
+            update_post_meta( $order_id, 'My VAT Number section', sanitize_text_field( substr($_POST['vat_number'], 0, 20) ) );
         }
     }
     
     /**
     * Display field value on the order edit page
     */
-    add_action( 'woocommerce_admin_order_data_after_billing_address', 'my_custom_checkout_field_display_admin_order_meta', 10, 1 );
+    add_action( 'woocommerce_admin_order_data_after_billing_address', 'bill_pt_my_custom_checkout_field_display_admin_order_meta', 10, 1 );
     
-    function my_custom_checkout_field_display_admin_order_meta($order){
+    function bill_pt_my_custom_checkout_field_display_admin_order_meta($order){
         echo '<p><strong>'.__('Número de Contribuinte',"bill-faturacao"). ':</strong> ' . get_post_meta( $order->get_id(), 'My VAT Number section', true ) . '</p>';
     }
     

@@ -1,6 +1,6 @@
 <?php
 use EpicBit\BillPhpSdk\Api as API;
-class Bill
+class BillPT
 {
     protected $api;
     protected $logged;
@@ -228,7 +228,7 @@ class Bill
         if(isset($_POST['email_bill']) && isset($_POST['password'])){
               
             $user = $api->getToken([
-            'email' => $_POST['email_bill'],
+            'email' => sanitize_email($_POST['email_bill']),
             'password' => $_POST['password']
             ]);
             
@@ -357,7 +357,7 @@ class Bill
             }
             
             if(isset($_POST['isencao'])){
-                $config['isencao'] = substr($_POST['isencao'], 0, 3);
+                $config['isencao'] = sanitize_text_field(substr($_POST['isencao'], 0, 3));
             }
             
             if(isset($_POST['unidade_medida'])){
@@ -377,7 +377,7 @@ class Bill
             }
 
             if(isset($_POST['codigo_portes'])){
-              $config['codigo_portes'] = strip_tags($_POST['codigo_portes']);
+              $config['codigo_portes'] = sanitize_text_field(strip_tags($_POST['codigo_portes']));
             }
 
             if(isset($_POST['api_mode'])){
@@ -433,7 +433,7 @@ class Bill
         
         global $wpdb;
         $api = $this->api;
-        $config = $_GET['update_config'];
+        $config = sanitize_text_field($_GET['update_config']);
         
         switch($config){
             case 'loja':
@@ -668,7 +668,7 @@ public function printDocumentInfo($meta)
           <label class="label"><?php echo __('Tipo Documento',"bill-faturacao"); ?></label>
           <div class="control">
             <div class="is-fullwidth">
-              <?php switch ($_GET['doc']) {
+              <?php switch (sanitize_text_field($_GET['doc'])) {
                 case 'orcamento':
                   $title = __("Orçamento","bill-faturacao");
                   $description = __("Um Orçamento é um documento que informa o cliente da melhor cotação possível para os respectivos serviços e produtos pretendidos e servirá como documento formal para assinatura de contrato ou emissão de Factura.","bill-faturacao");
@@ -1416,7 +1416,7 @@ public function createDocument()
         $_POST['data'] = str_replace("T", " ", $_POST['data']) . ':00';
         if(!$api->isValidDateTime($_POST['data'])){
           if(isset($documento->error)){
-            $this->addError( __("Data em formato invalido","bill-faturacao") . strip_tags($_POST['data']));
+            $this->addError( __("Data em formato invalido","bill-faturacao") . sanitize_text_field(strip_tags($_POST['data'])));
           }
           $this->printErrors();
           return;
@@ -1429,7 +1429,7 @@ public function createDocument()
         $_POST['prazo_vencimento'] = str_replace("T", " ", $_POST['prazo_vencimento']) . ':00';
         if(!$api->isValidDateTime($_POST['prazo_vencimento'])){
           if(isset($documento->error)){
-            $this->addError(__("Prazo Vencimento formato invalido","bill-faturacao") . strip_tags($_POST['prazo_vencimento']));
+            $this->addError(__("Prazo Vencimento formato invalido","bill-faturacao") . sanitize_text_field(strip_tags($_POST['prazo_vencimento'])));
           }
           $this->printErrors();
           return;
@@ -1442,7 +1442,7 @@ public function createDocument()
         $_POST['data_carga'] = str_replace("T", " ", $_POST['data_carga']) . ':00';
         if(!$api->isValidDateTime($_POST['data_carga'])){
           if(isset($documento->error)){
-            $this->addError( __("Data Carga em formato invalido","bill-faturacao") . strip_tags($_POST['data_carga']));
+            $this->addError( __("Data Carga em formato invalido","bill-faturacao") . sanitize_text_field(strip_tags($_POST['data_carga'])));
           }
           $this->printErrors();
           return;
@@ -1455,7 +1455,7 @@ public function createDocument()
         $_POST['data_descarga'] = str_replace("T", " ", $_POST['data_descarga']) . ':00';
         if(!$api->isValidDateTime($_POST['data_descarga'])){
           if(isset($documento->error)){
-            $this->addError( __("Data Descarga em formato invalido","bill-faturacao") . strip_tags($_POST['data_descarga']));
+            $this->addError( __("Data Descarga em formato invalido","bill-faturacao") . sanitize_text_field(strip_tags($_POST['data_descarga'])));
           }
           $this->printErrors();
           return;
@@ -1473,7 +1473,7 @@ public function createDocument()
 
       if(isset($_POST['codigo_postal'])){
         if(!$api->isValidZipCode($_POST['codigo_postal'])){
-          $this->addError( __("Codigo Postal Invalido, se não tiver a informação deixe em branco.","bill-faturacao") . strip_tags($_POST['codigo_postal']));
+          $this->addError( __("Codigo Postal Invalido, se não tiver a informação deixe em branco.","bill-faturacao") . sanitize_text_field(strip_tags($_POST['codigo_postal'])));
           $this->printErrors();
           return;
         }
@@ -1481,7 +1481,7 @@ public function createDocument()
 
       if(isset($_POST['carga_codigo_postal'])){
         if(!$api->isValidZipCode($_POST['carga_codigo_postal'])){
-          $this->addError( __("Codigo Postal do armazem invalido (é apenas obrigado a colocar os dados do armazem em documentos de transporte) :","bill-faturacao") . strip_tags($_POST['carga_codigo_postal']));
+          $this->addError( __("Codigo Postal do armazem invalido (é apenas obrigado a colocar os dados do armazem em documentos de transporte) :","bill-faturacao") . sanitize_text_field(strip_tags($_POST['carga_codigo_postal'])));
           $this->printErrors();
           return;
         }
@@ -1489,7 +1489,7 @@ public function createDocument()
       
       if(isset($_POST['carga_codigo_postal'])){
         if(!$api->isValidZipCode($_POST['descarga_codigo_postal'])){
-          $this->addError( __("Codigo Postal do destino invalido (é apenas obrigado a colocar os dados do destino em documentos de transporte) :","bill-faturacao") . strip_tags($_POST['descarga_codigo_postal']));
+          $this->addError( __("Codigo Postal do destino invalido (é apenas obrigado a colocar os dados do destino em documentos de transporte) :","bill-faturacao") . sanitize_text_field(strip_tags($_POST['descarga_codigo_postal'])));
           $this->printErrors();
           return;
         }
@@ -1502,34 +1502,34 @@ public function createDocument()
      $_POST['tipificacao'] = 'ORC';
      $documento =  $api->createDocument($_POST);
      if(isset($documento->id)){
-       $this->updateMeta($order_id, '_orcamento_id', $documento->id);
-       $this->updateMeta($order_id, '_orcamento_token', $documento->token_download);
+       $this->updateMeta($order_id, '_orcamento_id', (int) $documento->id);
+       $this->updateMeta($order_id, '_orcamento_token', sanitize_text_field($documento->token_download));
      }
      break;
      case 'encomenda':
      $_POST['tipificacao'] = 'NENC';
      $documento =  $api->createDocument($_POST);
      if(isset($documento->id)){
-       $this->updateMeta($order_id, '_encomenda_id', $documento->id);
-       $this->updateMeta($order_id, '_encomenda_token', $documento->token_download);
+       $this->updateMeta($order_id, '_encomenda_id', (int) $documento->id);
+       $this->updateMeta($order_id, '_encomenda_token', sanitize_text_field($documento->token_download));
      }
      break;
      case 'guia_e_fatura':
      $_POST['tipificacao'] = 'GT';
      $documento =  $api->createDocument($_POST);
      if(isset($documento->id)){
-       $this->updateMeta($order_id, '_guia_id', $documento->id);
-       $this->updateMeta($order_id, '_guia_token', $documento->token_download);
-       $this->updateMeta($order_id, '_guia_terminado', $documento->terminado);
+       $this->updateMeta($order_id, '_guia_id', (int) $documento->id);
+       $this->updateMeta($order_id, '_guia_token', sanitize_text_field($documento->token_download));
+       $this->updateMeta($order_id, '_guia_terminado', (int) $documento->terminado);
        
        if($documento->terminado){
-          $documento = $api->convertDocumentWithID  ($documento->id, 'FT', $_POST['data']);
+          $documento = $api->convertDocumentWithID($documento->id, 'FT', $_POST['data']);
        }
 
        if(isset($documento->id)){
-        $this->updateMeta($order_id, '_fatura_id', $documento->id);
-        $this->updateMeta($order_id, '_fatura_token', $documento->token_download);
-        $this->updateMeta($order_id, '_fatura_terminado', $documento->terminado);
+        $this->updateMeta($order_id, '_fatura_id', (int) $documento->id);
+        $this->updateMeta($order_id, '_fatura_token', sanitize_text_field($documento->token_download));
+        $this->updateMeta($order_id, '_fatura_terminado', (int) $documento->terminado);
        }
      }
      break;
@@ -1537,27 +1537,27 @@ public function createDocument()
      $_POST['tipificacao'] = 'FT';
      $documento =  $api->createDocument($_POST);
      if(isset($documento->id)){
-       $this->updateMeta($order_id, '_fatura_id', $documento->id);
-       $this->updateMeta($order_id, '_fatura_token', $documento->token_download);
-       $this->updateMeta($order_id, '_fatura_terminado', $documento->terminado);
+       $this->updateMeta($order_id, '_fatura_id', (int) $documento->id);
+       $this->updateMeta($order_id, '_fatura_token', sanitize_text_field($documento->token_download));
+       $this->updateMeta($order_id, '_fatura_terminado', (int) $documento->terminado);
      }
      break;
      case 'fatura_recibo':
      $_POST['tipificacao'] = 'FR';
      $documento =  $api->createDocument($_POST);
      if(isset($documento->id)){
-       $this->updateMeta($order_id, '_fatura_recibo_id', $documento->id);
-       $this->updateMeta($order_id, '_fatura_recibo_token', $documento->token_download);
-       $this->updateMeta($order_id, '_fatura_terminado', $documento->terminado);
+       $this->updateMeta($order_id, '_fatura_recibo_id', (int) $documento->id);
+       $this->updateMeta($order_id, '_fatura_recibo_token', sanitize_text_field($documento->token_download));
+       $this->updateMeta($order_id, '_fatura_terminado', (int) $documento->terminado);
      }
      break;
      case 'fatura_simplificada':
       $_POST['tipificacao'] = 'FS';
       $documento =  $api->createDocument($_POST);
       if(isset($documento->id)){
-        $this->updateMeta($order_id, '_fatura_simplificada_id', $documento->id);
-        $this->updateMeta($order_id, '_fatura_simplificada_token', $documento->token_download);
-        $this->updateMeta($order_id, '_fatura_terminado', $documento->terminado);
+        $this->updateMeta($order_id, '_fatura_simplificada_id', (int) $documento->id);
+        $this->updateMeta($order_id, '_fatura_simplificada_token', sanitize_text_field($documento->token_download));
+        $this->updateMeta($order_id, '_fatura_terminado', (int) $documento->terminado);
       }
      break;
      case 'recibo':
@@ -1565,7 +1565,7 @@ public function createDocument()
      $documento_id = get_post_meta($order_id, '_fatura_id', true);
      $documento =  $api->createReceiptToDocumentWithID($documento_id);
      if(isset($documento->id)){
-       $this->updateMeta($order_id, '_recibo_id', $documento->id);
+       $this->updateMeta($order_id, '_recibo_id', (int) $documento->id);
      }
      break;
    }
@@ -1573,10 +1573,10 @@ public function createDocument()
       if(isset($documento->id)){
        
         if(isset($_POST['envio_email']) && $_POST['envio_email'] == "1" && isset($_POST['contato']['email']) && filter_var($_POST['contato']['email'], FILTER_VALIDATE_EMAIL) && $documento->terminado ){
-          $email = $api->emailDocument(['email' => $_POST['contato']['email'], 'id' => $documento->id]);
+          $email = $api->emailDocument(['email' => sanitize_email($_POST['contato']['email']), 'id' => (int) $documento->id]);
           
             if($api->success()){
-              $this->updateMeta((int) $order_id, '_email_enviado_' . $documento->id, 'sim');
+              $this->updateMeta((int) $order_id, '_email_enviado_' . sanitize_text_field($documento->id), 'sim');
           
               echo '<div class="notification is-success">' . __("E-mail enviado com sucesso para o seguinte endereço: ","bill-faturacao") . sanitize_text_field($_POST['contato']['email']) . '</div>';
             } 
@@ -1598,6 +1598,8 @@ public function createDocument()
 public function getContatoCodigo($nif, $email)
 {
   global $wpdb;
+  $nif = sanitize_text_field($nif);
+  $email = sanitize_email($email);
   $contato = $wpdb->get_row("SELECT * FROM bill_contatos WHERE nif = '$nif' OR email = '$email'");
 
   return isset($contato->codigo) ? $contato->codigo : '';
@@ -1627,9 +1629,9 @@ public function createContato($data)
 
     if(isset($contato->data[0]->id)){
       $wpdb->insert( 'bill_contatos', [
-        'nif' => $contato->data[0]->nif,
-        'codigo' => $contato->data[0]->codigo,
-        'email' => $contato->data[0]->email,
+        'nif' => sanitize_text_field($contato->data[0]->nif),
+        'codigo' => sanitize_text_field($contato->data[0]->codigo),
+        'email' => sanitize_email($contato->data[0]->email),
         ], ['%s','%s','%s'] );
 
         return $contato->data[0]; 
@@ -1643,9 +1645,9 @@ public function createContato($data)
 
     if(isset($contato->data[0]->id)){
       $wpdb->insert( 'bill_contatos', [
-        'nif' => $contato->data[0]->nif,
-        'codigo' => $contato->data[0]->codigo,
-        'email' => $contato->data[0]->email,
+        'nif' => sanitize_text_field($contato->data[0]->nif),
+        'codigo' => sanitize_text_field($contato->data[0]->codigo),
+        'email' => sanitize_email($contato->data[0]->email),
         ], ['%s','%s','%s'] );
         
         return $contato->data[0]; 
@@ -1655,24 +1657,24 @@ public function createContato($data)
   $contato = $api->createContact($data);
   if(strlen($contato->email) > 0){
     $wpdb->delete('bill_contatos', [
-      'email' => $contato->email
+      'email' => sanitize_email($contato->email)
     ]);
   }
   if(strlen($contato->codigo) > 0){
     $wpdb->delete('bill_contatos', [
-      'codigo' => $contato->codigo
+      'codigo' => sanitize_text_field($contato->codigo)
     ]);
   }
   if($contato->nif != "999999990"){
     $wpdb->delete('bill_contatos', [
-      'nif' => $contato->nif
+      'nif' => sanitize_text_field($contato->nif)
     ]);
   }
   #nao encontrou então cria novo e grava na BD
   $wpdb->insert( 'bill_contatos', [
-    'nif' => $contato->nif,
-    'codigo' => $contato->codigo,
-    'email' => $contato->email,
+    'nif' => sanitize_text_field($contato->nif),
+    'codigo' => sanitize_text_field($contato->codigo),
+    'email' => sanitize_email($contato->email),
     ], ['%s','%s','%s'] );
 
   return $contato;
@@ -1688,7 +1690,7 @@ public function createItems($produtos)
       }
 
       if(isset($produto['codigo']) && strlen($produto['codigo']) > 0){
-        $produto = $this->getItemByCodigo($produto['codigo']);
+        $produto = $this->getItemByCodigo(sanitize_text_field($produto['codigo']));
 
         if(!$api->success()){
           $this->addError($produto->error);
@@ -1697,21 +1699,21 @@ public function createItems($produtos)
         }
 
         if(isset($produto->data[0])){
-            $produtos[$key]['item_id'] = $produto->data[0]->id;
+            $produtos[$key]['item_id'] = (int) $produto->data[0]->id;
 
-            $product_id = $produtos[$key]['product_id'];
-            $variation_id = $produtos[$key]['variation_id'];
+            $product_id = sanitize_text_field($produtos[$key]['product_id']);
+            $variation_id = sanitize_text_field($produtos[$key]['variation_id']);
 
             $item = wc_get_product( $product_id );
             
             if( strlen($item->get_sku()) == 0){
-              $item->set_sku($produto->codigo);
+              $item->set_sku(sanitize_text_field($produto->codigo));
               $item->save();
             }
             
             if( $variation_id > 0){
                 $item = wc_get_product( $variation_id );
-                $item->set_sku($produto->codigo);
+                $item->set_sku(sanitize_text_field($produto->codigo));
                 $item->save();
             }
             
@@ -1720,8 +1722,9 @@ public function createItems($produtos)
       }
       
       $portes = false;
-      $product_id = $produto->product_id;
-      $variation_id = $produto->variation_id;
+
+      $product_id = sanitize_text_field($produto->product_id);
+      $variation_id = sanitize_text_field($produto->variation_id);
 
       if(isset($produtos[$key]['codigo']) && strlen($produtos[$key]['codigo']) == 0){
         unset($produtos[$key]['codigo']);
@@ -1733,10 +1736,10 @@ public function createItems($produtos)
       }
 
       
-      $produto['unidade_medida_id'] = ($produto['unidade_medida_id'] == "0") ? $this->getUnidadeMedidaID() : $produto['unidade_medida_id'];
+      $produto['unidade_medida_id'] = ($produto['unidade_medida_id'] == "0") ? $this->getUnidadeMedidaID() : sanitize_text_field($produto['unidade_medida_id']);
 
       if($portes){
-        $produto['imposto_id'] = !isset($produto['imposto_id']) ? $this->getUnidadeMedidaID() : $produto['imposto_id'];
+        $produto['imposto_id'] = !isset($produto['imposto_id']) ? $this->getImpostoID() : (int) $produto['imposto_id'];
       }
 
       $produto_data = array_merge($produto, ['iva_compra' => 0, 'descricao' => $produto['nome']]);
@@ -1746,25 +1749,25 @@ public function createItems($produtos)
       if($portes){
         global $wpdb;       
         $config = $this->getDefaultConfig();
-        $config->codigo_portes = $produto->codigo;
+        $config->codigo_portes = sanitize_text_field($produto->codigo);
         $wpdb->delete( 'bill_config', array( 'config' => 'default_config' ) );
         $wpdb->insert('bill_config',[
           'config' => 'default_config','value' => json_encode($config)],['%s','%s']);
       }
       
-      $produtos[$key]['item_id'] = $produto->id;
+      $produtos[$key]['item_id'] = (int) $produto->id;
       
       if(!$portes){
         $item = wc_get_product( $product_id );
-
+        var_dump($item);
         if( strlen($item->get_sku()) == 0){
-          $item->set_sku($produto->codigo);
+          $item->set_sku(sanitize_text_field($produto->codigo));
           $item->save();
         }
 
         if( $variation_id > 0){
           $item = wc_get_product( $variation_id );
-          $item->set_sku($produto->codigo);
+          $item->set_sku(sanitize_text_field($produto->codigo));
           $item->save();
         }
       }
@@ -1781,7 +1784,7 @@ public function printDocument()
     return ;
   }
   $order_id = (int) $_GET['order'];
-  $doc = $_GET['doc'];
+  $doc = sanitize_text_field($_GET['doc']);
   $api = $this->api;
   $meta = $this->getOrderMeta($order_id);
   switch ($doc) {
@@ -2007,12 +2010,12 @@ public function printDocumentTable($data)
   $estado = !$data->terminado ? "Rascunho" : "Finalizado";
   echo '<header>
         <section>
-          <h1>' . $data->invoice_number . '</h1>
-          <span>' . $data->invoice_date . '</span>
+          <h1>' . sanitize_text_field($data->invoice_number) . '</h1>
+          <span>' . sanitize_text_field($data->invoice_date) . '</span>
         </section>
 
         <section>
-          <span>' . $estado  . '</span>
+          <span>' . sanitize_text_field($estado)  . '</span>
         </section><br clear="all" />';
 }
 
@@ -2021,12 +2024,12 @@ public function printContactTable($data)
   
   echo '<div>
         <section>
-          <h1>' . $data->contato->nome . '</h1>
-          <span>VAT/NIF: ' . $data->contato->nif . '</span>
-          <p>' . $data->contato->morada . '</p>
-          <p>' . $data->contato->cidade . '</p>
-          <p>' . $data->contato->codigo_postal . '</p>
-          <p>' . $data->contato->pais . '</p>
+          <h1>' . sanitize_text_field($data->contato->nome) . '</h1>
+          <span>VAT/NIF: ' . sanitize_text_field($data->contato->nif) . '</span>
+          <p>' . sanitize_text_field($data->contato->morada) . '</p>
+          <p>' . sanitize_text_field($data->contato->cidade) . '</p>
+          <p>' . sanitize_text_field($data->contato->codigo_postal) . '</p>
+          <p>' . sanitize_text_field($data->contato->pais) . '</p>
         </section>
         </div>
       </header>';
@@ -2045,11 +2048,11 @@ public function printProductTable($data)
   </section><section>';
   foreach($data->lancamentos as $lancamento){
     echo "<figure>
-      <span>$lancamento->nome</span>
+      <span>".sanitize_text_field($lancamento->nome) . "</span>
       <span>" . round($lancamento->quantidade, 2) . "</span>
       <span>" . round($lancamento->preco_unitario, 2) . "</span>
-      <span>$lancamento->tax_total</span>
-      <span>$lancamento->gross_total</span>
+      <span>".sanitize_text_field($lancamento->tax_total) . "</span>
+      <span>".sanitize_text_field($lancamento->gross_total) . "</span>
     </figure>";
   }
   echo '</section>';
@@ -2059,19 +2062,19 @@ public function printInvoiceTotalTable($data)
 {
    echo "<section>
             <span>" . __("Sub-total","bill-faturacao") . "</span>
-            <span>$data->net_total</span>
+            <span>".sanitize_text_field($data->net_total) ."</span>
           </section>
           <section>
              <span>" . __("Imposto","bill-faturacao") . "</span>
-             <span>$data->tax_total</span>
+             <span>".sanitize_text_field($data->tax_total) ."</span>
           </section>
           <section>
               <span>" . __("Descontos","bill-faturacao") . "</span>
-              <span>$data->desconto_total</span>
+              <span>".sanitize_text_field($data->desconto_total) ."</span>
             </section>
             <section>
             <span>" . __("Total","bill-faturacao") . "</span>
-            <span>$data->gross_total</span>
+            <span>".sanitize_text_field($data->gross_total) ."</span>
           </section>
         </main>";
 }
@@ -2126,6 +2129,7 @@ public function sendEmail()
 public function getOrderMeta($postID = ''){
     global $wpdb;
     if($postID <> ''){
+        $postID = (int) $postID;
         $results = $wpdb->get_results("SELECT * FROM ". $wpdb->prefix ."postmeta WHERE post_id = '$postID'", ARRAY_A);
         foreach($results as $user_r){
             $userInfo[ (string) $user_r['meta_key'] ] = $user_r['meta_value'];

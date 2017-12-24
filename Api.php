@@ -803,41 +803,7 @@ public function prettyLog($method, $url, $params, $result, $response_time, $type
 	if(!file_exists($this->log_file)){
 		$response_time = $response_time['total'];
 		
-		file_put_contents($this->log_file,'<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.5.1/css/bulma.css" /><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script><script>
-			jQuery(document).ready(function(){
-				function output(inp) {
-					return inp;
-				}
-
-				function syntaxHighlight(json) {
-					json = json.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
-					return json.replace(/("(\u[a-zA-Z0-9]{4}|\[^u]|[^\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-						var cls = "number1";
-						if (/^"/.test(match)) {
-							if (/:$/.test(match)) {
-								cls = "key";
-							} else {
-								cls = "string";
-							}
-						} else if (/true|false/.test(match)) {
-							cls = "boolean";
-						} else if (/null/.test(match)) {
-							cls = "null";
-						}
-						return "<span class=\"" + cls + "\">" + match + "</span>";
-					});
-				}
-
-
-				$("pre.json").each(function(){
-					var div = $(this);
-					var obj = JSON.parse(div.html());
-					var str = JSON.stringify(obj, undefined, 4);
-					div.html(output(syntaxHighlight(str)));
-
-				});
-			});
-		</script><style>
+		file_put_contents($this->log_file,'<style>
 		pre {outline: 1px solid #ccc; padding: 5px; margin: 5px; color: #fff; background: #212121}
 		.string { color: #FD971F; }
 		.number1 { color: #66D9EF; }
