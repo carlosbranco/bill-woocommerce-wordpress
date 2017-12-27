@@ -1742,9 +1742,12 @@ public function createItems($produtos)
         $produto['imposto_id'] = !isset($produto['imposto_id']) ? $this->getImpostoID() : (int) $produto['imposto_id'];
       }
 
+      if( $produto['unidade_medida_id'] == "0" ){
+        unset($produto['unidade_medida_id']);
+      }
+
       $produto_data = array_merge($produto, ['iva_compra' => 0, 'descricao' => $produto['nome']]);
       $produto = $api->createItem($produto_data);
-      
 
       if($portes){
         global $wpdb;       
@@ -1759,7 +1762,7 @@ public function createItems($produtos)
       
       if(!$portes){
         $item = wc_get_product( $product_id );
-        var_dump($item);
+
         if( strlen($item->get_sku()) == 0){
           $item->set_sku(sanitize_text_field($produto->codigo));
           $item->save();
