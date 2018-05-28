@@ -3,7 +3,7 @@
 /*
 Plugin Name: Bill.pt Invoices Woo - Create invoices with Bill.pt API
 Description:  WordPress Plugin that allow you to use bill.pt API to create invoices.
-Version: 0.8.12
+Version: 1.0.4
 Author: EpicBit
 Author URI: https://epicbit.pt
 Domain Path: /languages
@@ -79,7 +79,7 @@ if (bill_pt_woocommerce_in_the_house()){
     function bill_pt_add_sidebar( $post ){
         if( $post->post_status ==  "wc-processing" || $post->post_status ==  "wc-completed"){
             echo '<div style="height: 24px">
-            <a type="button" class="button button-primary" target="_BLANK" style="float:right" href="admin.php?page=bill_settings&tab=encomendas&order='.$post->ID.'">' . __(
+            <a type="button" class="button button-primary" target="_BLANK" style="float:right" href="admin.php?page=bill_settings&tab=encomendas">' . __(
             "Ver / Gerar Documento","bill-faturacao") . '</a>
             </div>';
         }else{
