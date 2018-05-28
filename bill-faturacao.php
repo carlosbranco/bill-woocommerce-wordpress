@@ -3,7 +3,7 @@
 /*
 Plugin Name: Bill.pt Invoices Woo - Create invoices with Bill.pt API
 Description:  WordPress Plugin that allow you to use bill.pt API to create invoices.
-Version: 0.5.12
+Version: 0.8.12
 Author: EpicBit
 Author URI: https://epicbit.pt
 Domain Path: /languages
