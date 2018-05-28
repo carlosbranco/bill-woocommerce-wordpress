@@ -1151,8 +1151,8 @@ public function printItemsTable($meta)
         $movimenta_stock = 0;
 
         echo '<tr>';
-        echo '<td class="item_id" data-key="' . $key . '">' . $item_id . '<input type="hidden" name="produtos[' . $key . '][unidade_medida_id]" value="' . $unidade_medida_id  . '" /><input type="hidden" name="produtos[' . $key . '][movimenta_stock]" value="' . $movimenta_stock  . '" /><input type="hidden" name="produtos[' . $key . '][ProductCategory]" value="' . $ProductCategory  . '" /><input type="hidden" name="produtos[' . $key . '][product_id]" value="' . $item->get_product_id() . '" /><input type="hidden" name="produtos[' . $key . '][variation_id]" value="' . $item->get_variation_id() . '" /></td>'; 
-        echo '<td><div class="field has-addons"><p class="control"><input class="input is-small sku" value="' . $sku . '" name="produtos[' . $key . '][codigo]" /></p><p class="control"><a class="button procurar-produto">' . __("Procurar","bill-faturacao") . '</a></p></div></td>';
+        echo '<td class="item_id" data-key="' . $key . '">' . $item_id . '</td>'; 
+        echo '<td><div class="field has-addons"><input type="hidden" name="produtos[' . $key . '][unidade_medida_id]" value="' . $unidade_medida_id  . '" /><input type="hidden" name="produtos[' . $key . '][movimenta_stock]" value="' . $movimenta_stock  . '" /><input type="hidden" name="produtos[' . $key . '][ProductCategory]" value="' . $ProductCategory  . '" /><input type="hidden" name="produtos[' . $key . '][product_id]" value="' . $item->get_product_id() . '" /><input type="hidden" name="produtos[' . $key . '][variation_id]" value="' . $item->get_variation_id() . '" /><p class="control"><input class="input is-small sku" value="' . $sku . '" name="produtos[' . $key . '][codigo]" /></p><p class="control"><a class="button procurar-produto">' . __("Procurar","bill-faturacao") . '</a></p></div></td>';
         echo '<td><input type="hidden" name="produtos[' . $key . '][nome]" value="' . $item->get_name() . '" />' . $item->get_name() . '</td>';
         echo '<td><input type="hidden" name="produtos[' . $key . '][quantidade]" value="' . $item['qty'] . '" />' . $item['qty'] . '</td>';
         echo '<td><input type="hidden" name="produtos[' . $key . '][preco_unitario]" value="' . $unit_price . '" />' . $unit_price . '</td>';
@@ -1689,6 +1689,9 @@ public function createItems($produtos)
         continue;
       }
 
+      $product_id = sanitize_text_field($produtos[$key]['product_id']);
+      $variation_id = sanitize_text_field($produtos[$key]['variation_id']);
+
       if(isset($produto['codigo']) && strlen($produto['codigo']) > 0){
         $produto = $this->getItemByCodigo(sanitize_text_field($produto['codigo']));
 
@@ -1723,9 +1726,6 @@ public function createItems($produtos)
       
       $portes = false;
 
-      $product_id = sanitize_text_field($produto->product_id);
-      $variation_id = sanitize_text_field($produto->variation_id);
-
       if(isset($produtos[$key]['codigo']) && strlen($produtos[$key]['codigo']) == 0){
         unset($produtos[$key]['codigo']);
         unset($produto['codigo']);
@@ -1748,6 +1748,12 @@ public function createItems($produtos)
 
       $produto_data = array_merge($produto, ['iva_compra' => 0, 'descricao' => $produto['nome']]);
       $produto = $api->createItem($produto_data);
+
+      if(!$api->success()){
+          $this->addError($produto->error);
+          $this->printErrors();
+          die();
+      }
 
       if($portes){
         global $wpdb;       
