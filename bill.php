@@ -1722,15 +1722,19 @@ echo '</div>';
             $variation_id = sanitize_text_field($produtos[$key]['variation_id']);
 
             if (isset($produto['codigo']) && strlen($produto['codigo']) > 0) {
-                $produto = $this->getItemByCodigo(sanitize_text_field($produto['codigo']));
+                $temp_produto = $this->getItemByCodigo(sanitize_text_field($produto['codigo']));
 
                 if (!$api->success()) {
-                    $this->addError($produto->error);
+                    $this->addError($temp_produto->error);
                     $this->printErrors();
                     die();
                 }
 
-                if (isset($produto->data[0])) {
+                if( isset( $temp_produto->data[0]->id )){
+                    $produto = $temp_produto;
+                }
+
+                if (isset($produto->total) && $produto->total > 0) {
                     $produtos[$key]['item_id'] = (int) $produto->data[0]->id;
 
                     $product_id   = sanitize_text_field($produtos[$key]['product_id']);
